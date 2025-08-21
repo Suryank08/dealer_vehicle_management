@@ -53,4 +53,5 @@ public class VehicleController {
        List<Vehicle> vehicleList= vehicleService.getAllVehicleByDealerSubscription(SubscriptionType.PREMIUM);
        return new ResponseEntity<>(vehicleList,HttpStatus.OK);
     }
+
 }

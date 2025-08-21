@@ -1,6 +1,7 @@
 package com.example.dealer_vehicle_management.entity;
 
 import com.example.dealer_vehicle_management.enums.PaymentMethodType;
+import com.example.dealer_vehicle_management.enums.PaymentStatus;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -32,8 +33,8 @@ public class PaymentLog {
     @Column(name="method")
     private PaymentMethodType paymentMethodType;
 
-    //__TO_BE CONSIDERED LATER__//
+    @Enumerated(value = EnumType.STRING)
     @Column(name="status")
-    private String status;
+    private PaymentStatus status;
 
 }

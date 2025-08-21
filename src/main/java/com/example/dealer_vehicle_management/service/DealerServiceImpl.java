@@ -1,6 +1,7 @@
 package com.example.dealer_vehicle_management.service;
 
 import com.example.dealer_vehicle_management.dao.DealerDao;
+import com.example.dealer_vehicle_management.dao.PaymentDao;
 import com.example.dealer_vehicle_management.dao.VehicleDao;
 import com.example.dealer_vehicle_management.entity.Dealer;
 import com.example.dealer_vehicle_management.entity.PaymentLog;
@@ -22,7 +23,7 @@ public class DealerServiceImpl implements DealerService{
     @Autowired
     private final VehicleDao vehicleDao;
     @Autowired
-    private final PaymentLogService paymentLogService;
+    private final PaymentDao paymentDao;
     @Override
     @Transactional
     public Dealer addDealer(Dealer dealer){
@@ -43,7 +44,7 @@ public class DealerServiceImpl implements DealerService{
         if (dealer.getPaymentLogList() != null && !dealer.getPaymentLogList().isEmpty()) {
             for (PaymentLog paymentLog : dealer.getPaymentLogList()) {
                 paymentLog.setDealer(savedDealer);
-                paymentLogService.addPayment(paymentLog);
+                paymentDao.save(paymentLog);
             }
         }
         return savedDealer;
@@ -83,7 +84,7 @@ public class DealerServiceImpl implements DealerService{
             existingDealer.getPaymentLogList().clear();
             for (PaymentLog paymentLog : dealer.getPaymentLogList()) {
                 paymentLog.setDealer(existingDealer);
-                PaymentLog managedPaymentLog = paymentLogService.addPayment(paymentLog);
+                PaymentLog managedPaymentLog = paymentDao.save(paymentLog);
                 existingDealer.getPaymentLogList().add(managedPaymentLog);
             }
         }

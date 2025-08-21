@@ -55,7 +55,6 @@ public class VehicleServiceImpl implements VehicleService {
         vehicleDao.delete(vehicle);
     }
     public Vehicle setVehicleFromVehicleRequest(VehicleRequest vehicleRequest){
-        System.out.println(vehicleRequest);
         Dealer dealer = dealerService.getDealer(vehicleRequest.getDealerId());
         Vehicle vehicle = new Vehicle();
         vehicle.setModel(vehicleRequest.getModel());
