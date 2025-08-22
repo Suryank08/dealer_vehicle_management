@@ -3,11 +3,11 @@ package com.example.dealer_vehicle_management.service;
 import com.example.dealer_vehicle_management.dao.PaymentDao;
 import com.example.dealer_vehicle_management.entity.Dealer;
 import com.example.dealer_vehicle_management.entity.PaymentLog;
-import com.example.dealer_vehicle_management.entity.Vehicle;
+
 import com.example.dealer_vehicle_management.enums.PaymentStatus;
 import com.example.dealer_vehicle_management.exception.ResourceNotFoundException;
 import com.example.dealer_vehicle_management.request.PaymentRequest;
-import com.example.dealer_vehicle_management.request.VehicleRequest;
+
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
@@ -37,7 +37,7 @@ public class PaymentLogServiceLogImpl implements PaymentLogService {
     }
     @Override
     public PaymentLog getPayment(UUID id){
-        return paymentDao.findById(id).orElseThrow(()->new ResourceNotFoundException("Payment Id Not Found"+id));
+        return paymentDao.findById(id).orElseThrow(()->new ResourceNotFoundException("Payment Id Not Found : "+id));
     }
     @Override
     @Transactional

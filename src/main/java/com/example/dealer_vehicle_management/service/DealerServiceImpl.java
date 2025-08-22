@@ -55,7 +55,7 @@ public class DealerServiceImpl implements DealerService{
     }
     @Override
     public Dealer getDealer(UUID id){
-        return dealerDao.findById(id).orElseThrow(()->new ResourceNotFoundException("No Dealer Found of this Id"+id));
+        return dealerDao.findById(id).orElseThrow(()->new ResourceNotFoundException("No Dealer Found of this Id : "+id));
     }
     @Override
     public List<Dealer> getAllDealerBySubscriptionType(SubscriptionType subscriptionType){
@@ -93,7 +93,7 @@ public class DealerServiceImpl implements DealerService{
     @Override
     @Transactional
     public void removeDealer(UUID id){
-        Dealer dealer = dealerDao.findById(id).orElseThrow(()->new ResourceNotFoundException("No Dealer Found of this Id"+id));
+        Dealer dealer = dealerDao.findById(id).orElseThrow(()->new ResourceNotFoundException("No Dealer Found of this Id : "+id));
         dealerDao.delete(dealer);
     }
 }
