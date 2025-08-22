@@ -30,10 +30,10 @@ Follow these steps to get the project up and running on your local machine.
 
 ### 1. Configure the Database
 
-This project uses PostgreSQL. First, you need to create the database locally.
+This project uses PostgreSQL. First, you need to create the database locally (bash command given below).
 
 ```bash
-createdb -U your_username -W dealer_vehicle_db
+sudo -u postgres createdb dealer_vehicle_db
 ````
 
 ### 2\. Update `application.properties`
