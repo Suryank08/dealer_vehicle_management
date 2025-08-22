@@ -22,7 +22,7 @@ public class PaymentController {
         PaymentLog PaymentLog = paymentLogService.getPayment(id);
         return new ResponseEntity<>(PaymentLog, HttpStatus.OK);
     }
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<PaymentLog>> getAllPaymentLog() {
         List<PaymentLog> PaymentLogList = paymentLogService.getAllPayment();
         if (PaymentLogList.isEmpty()) {
@@ -35,11 +35,7 @@ public class PaymentController {
         PaymentLog createdPaymentLog = paymentLogService.addPayment(paymentRequest);
         return new ResponseEntity<>(createdPaymentLog, HttpStatus.CREATED);
     }
-    @PostMapping("/update")
-    public ResponseEntity<PaymentLog> updatePaymentLog(@RequestBody PaymentLog PaymentLog) {
-        PaymentLog createdPaymentLog = paymentLogService.updatePayment(PaymentLog);
-        return new ResponseEntity<>(createdPaymentLog, HttpStatus.OK);
-    }
+
     @PostMapping("/initiate")
     public ResponseEntity<PaymentLog> initiatePayment(@RequestBody PaymentRequest paymentRequest) {
         PaymentLog savedPayment = paymentLogService.addPayment(paymentRequest);

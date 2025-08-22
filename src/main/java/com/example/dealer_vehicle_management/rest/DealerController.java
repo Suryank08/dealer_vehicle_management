@@ -21,7 +21,7 @@ public class DealerController {
             Dealer dealer = dealerService.getDealer(id);
             return new ResponseEntity<>(dealer, HttpStatus.OK);
     }
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<Dealer>> getAllDealer() {
         List<Dealer> dealerList = dealerService.getAllDealer();
         if (dealerList.isEmpty()) {
@@ -39,10 +39,6 @@ public class DealerController {
         Dealer createdDealer = dealerService.updateDealer(dealer);
         return new ResponseEntity<>(createdDealer, HttpStatus.OK);
     }
-    @DeleteMapping("/dealers/{id}")
-    public ResponseEntity<Void> deleteDealer(@PathVariable UUID id) {
-        dealerService.removeDealer(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
+
 
 }

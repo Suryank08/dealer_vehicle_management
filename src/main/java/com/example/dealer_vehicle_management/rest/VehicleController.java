@@ -24,7 +24,7 @@ public class VehicleController {
         Vehicle vehicle = vehicleService.getVehicleById(id);
         return new ResponseEntity<>(vehicle, HttpStatus.OK);
     }
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<Vehicle>> getAllVehicle() {
         List<Vehicle> vehicleList = vehicleService.getAllVehicle();
         if (vehicleList.isEmpty()) {
@@ -38,16 +38,7 @@ public class VehicleController {
         Vehicle createdVehicle = vehicleService.addVehicle(vehicleRequest);
         return new ResponseEntity<>(createdVehicle, HttpStatus.CREATED);
     }
-    @PostMapping("/update")
-    public ResponseEntity<Vehicle> updateVehicle(@RequestBody Vehicle vehicle) {
-        Vehicle createdVehicle = vehicleService.updateVehicle(vehicle);
-        return new ResponseEntity<>(createdVehicle, HttpStatus.OK);
-    }
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteVehicle(@PathVariable UUID id) {
-        vehicleService.removeVehicle(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
+
     @GetMapping("/premium-dealers")
     public ResponseEntity<List<Vehicle>> getAllVehicleOfPremiumDealer(){
        List<Vehicle> vehicleList= vehicleService.getAllVehicleByDealerSubscription(SubscriptionType.PREMIUM);
