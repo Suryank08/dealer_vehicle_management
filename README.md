@@ -28,22 +28,15 @@ This is a Spring Boot REST API project for managing dealers, vehicles, and payme
 
 Follow these steps to get the project up and running on your local machine.
 
-### 1. Clone the Repository
-
-```bash
-git clone [https://github.com/Suryank08/dealer_vehicle_management.git](https://github.com/Suryank08/dealer_vehicle_management.git)
-cd dealer_vehicle_management
-````
-
-### 2\. Configure the Database
+### 1. Configure the Database
 
 This project uses PostgreSQL. First, you need to create the database locally.
 
 ```bash
 createdb -U your_username -W dealer_vehicle_db
-```
+````
 
-### 3\. Update `application.properties`
+### 2\. Update `application.properties`
 
 Navigate to `src/main/resources/application.properties` and update the database connection details with your credentials.
 
@@ -63,7 +56,7 @@ spring.sql.init.data-locations=classpath:data.sql
 
 > **Note:** The `schema.sql` and `data.sql` files will automatically set up the database structure and populate it with sample data on startup.
 
-### 4\. Run the Application
+### 3\. Run the Application
 
 Execute the following command in your terminal to start the Spring Boot application.
 
@@ -71,16 +64,12 @@ Execute the following command in your terminal to start the Spring Boot applicat
 mvn spring-boot:run
 ```
 
-The application will start on `http://localhost:8080`.
-
-You can access the payment gateway UI at `http://localhost:8080/index.html`.
-
 -----
 
 ## 📬 API Endpoints
 
 All endpoints are prefixed with `/api`.
-
+#### Test DealerId : `b301c238-d63c-4a12-8888-085e3d7402c5`
 ### 🧑 Dealer APIs
 
 | Method | Endpoint | Description |
@@ -140,13 +129,12 @@ All endpoints are prefixed with `/api`.
 
 -----
 
-## 🔗 Postman Collection
+## 🌐 Key URLs & Resources
 
-For easy testing, you can import the provided Postman collection.
-
-  * **File:** `Dealer & Vehicle Management API.postman_collection.json`
-
-This collection contains pre-configured requests for all endpoints. It also includes environment variables for `dealerId`, `vehicleId`, and `paymentId` that you can replace with real values after creating your first records.
+  * **GitHub Repository:** `https://github.com/Suryank08/dealer_vehicle_management.git`
+  * **Local Server:** `http://localhost:8080`
+  * **Payment Gateway URL:** `http://localhost:8080/index.html`
+  * **Postman Collection File:** `Dealer & Vehicle Management API.postman_collection.json`
 
 -----
 
