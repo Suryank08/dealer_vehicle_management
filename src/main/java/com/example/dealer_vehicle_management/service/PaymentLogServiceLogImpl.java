@@ -37,7 +37,7 @@ public class PaymentLogServiceLogImpl implements PaymentLogService {
     }
     @Override
     public PaymentLog getPayment(UUID id){
-        return paymentDao.findById(id).orElseThrow(()->new ResourceNotFoundException("Payment Id Not Found"));
+        return paymentDao.findById(id).orElseThrow(()->new ResourceNotFoundException("Payment Id Not Found"+id));
     }
     @Override
     @Transactional

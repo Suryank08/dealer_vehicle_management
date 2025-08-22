@@ -32,7 +32,7 @@ public class VehicleServiceImpl implements VehicleService {
     }
     @Override
     public Vehicle getVehicleById(UUID id){
-        return vehicleDao.findById(id).orElseThrow(()->new ResourceNotFoundException("Vehicle Id Not Found"));
+        return vehicleDao.findById(id).orElseThrow(()->new ResourceNotFoundException("Vehicle Id Not Found"+id));
     }
     @Override
     public List<Vehicle> getAllVehicleByDealerSubscription(SubscriptionType subscriptionType){
@@ -51,7 +51,7 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     @Transactional
     public void removeVehicle(UUID id){
-        Vehicle vehicle= vehicleDao.findById(id).orElseThrow(()->new ResourceNotFoundException("No such vehicle id found"));
+        Vehicle vehicle= vehicleDao.findById(id).orElseThrow(()->new ResourceNotFoundException("No such vehicle id found"+id));
         vehicleDao.delete(vehicle);
     }
     public Vehicle setVehicleFromVehicleRequest(VehicleRequest vehicleRequest){
