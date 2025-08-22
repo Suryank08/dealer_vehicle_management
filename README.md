@@ -69,7 +69,7 @@ mvn spring-boot:run
 ## 📬 API Endpoints
 For easy testing, you can import the provided Postman collection.
 
-* **File:** [Dealer & Vehicle Management API.postman_collection.json](Dealer%20&%20Vehicle%20Management%20API.postman_collection.json) 
+* **File:** [Dealer & Vehicle Management API.postman_collection.json](DealerVehicleAPI.postman_collection.json)
 All endpoints are prefixed with `/api`.
 #### Test DealerId : `b301c238-d63c-4a12-8888-085e3d7402c5`
 ### 🧑 Dealer APIs
