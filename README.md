@@ -1,199 +1,170 @@
-🚗 Dealer & Vehicle Management API
-A Spring Boot REST API project for managing Dealers, Vehicles, and Payments.
 
-This project is built as part of a backend task and provides endpoints to:
+# 🚗 Dealer & Vehicle Management API
 
-Manage Dealers (CRUD operations)
+This is a Spring Boot REST API project for managing dealers, vehicles, and payments. It was built as a backend task and provides a complete set of endpoints for a car dealership platform.
 
-Manage Vehicles (CRUD + Filter by Premium Dealers)
+---
 
-Manage Payments (Initiate & Retrieve payment records)
+## ✨ Features
 
-📌 Tech Stack
-Java 21
+* **Dealer Management:** Perform full CRUD (Create, Read, Update, Delete) operations on dealer information.
+* **Vehicle Management:** Manage vehicles, with the added functionality to filter vehicles listed by premium dealers.
+* **Payment Management:** Initiate new payments and retrieve historical payment records.
 
-Spring Boot 4.0 
+---
 
-Spring Data JPA
+## 🛠️ Tech Stack
 
-Hibernate
+* **Java 21:** The core programming language.
+* **Spring Boot 4.0:** The framework used to build the application.
+* **Spring Data JPA & Hibernate:** For data persistence and database interaction.
+* **PostgreSQL:** The primary relational database.
+* **Lombok:** A library to reduce boilerplate code.
+* **Maven:** The build automation tool.
 
-PostgreSQL
+---
 
-Lombok
+## 🚀 Getting Started
 
-Maven
+Follow these steps to get the project up and running on your local machine.
 
-🚀 Getting Started
-1. Clone Repository
-git clone https://github.com/Suryank08/dealer_vehicle_management.git
+### 1. Clone the Repository
+
+```bash
+git clone [https://github.com/Suryank08/dealer_vehicle_management.git](https://github.com/Suryank08/dealer_vehicle_management.git)
 cd dealer_vehicle_management
+````
 
-2. Configure Database:
-First, you'll need to create the database in your local PostgreSQL or MySQL instance. For PostgreSQL, you can use the following command:  "createdb -U your_username -W dealer_vehicle_db"
+### 2\. Configure the Database
 
-   
-3. Edit your application.properties:
+This project uses PostgreSQL. First, you need to create the database locally.
+
+```bash
+createdb -U your_username -W dealer_vehicle_db
+```
+
+### 3\. Update `application.properties`
+
+Navigate to `src/main/resources/application.properties` and update the database connection details with your credentials.
+
+```properties
 spring.datasource.url=jdbc:postgresql://localhost:5432/dealer_vehicle_db
 spring.datasource.username= "your username db"
-spring.datasource.password="Your password db
-
+spring.datasource.password="Your password db"
 
 spring.jpa.hibernate.ddl-auto=none
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 
-
+# Initializes the database schema and data from the provided SQL files
 spring.sql.init.mode=always
 spring.sql.init.schema-locations=classpath:schema.sql
 spring.sql.init.data-locations=classpath:data.sql
+```
 
+> **Note:** The `schema.sql` and `data.sql` files will automatically set up the database structure and populate it with sample data on startup.
 
-4. Run Application
+### 4\. Run the Application
+
+Execute the following command in your terminal to start the Spring Boot application.
+
+```bash
 mvn spring-boot:run
+```
 
-Server starts on: http://localhost:8080
+The application will start on `http://localhost:8080`.
 
-📬 API Endpoints
-🧑 Dealer APIs
-Method
+You can access the payment gateway UI at `http://localhost:8080/index.html`.
 
-Endpoint
+-----
 
-Description
+## 📬 API Endpoints
 
-POST
+All endpoints are prefixed with `/api`.
 
-/api/dealers/
+### 🧑 Dealer APIs
 
-Create a new dealer
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `POST` | `/api/dealers/` | Creates a new dealer. |
+| `GET` | `/api/dealers` | Retrieves a list of all dealers. |
+| `GET` | `/api/dealers/{dealerId}` | Retrieves a specific dealer by their ID. |
+| `POST` | `/api/dealers/update` | Updates an existing dealer's details. |
 
-GET
+**Example Request (Create Dealer)**
 
-/api/dealers
-
-Get all dealers
-
-GET
-
-/api/dealers/{dealerId}
-
-Get dealer by ID
-
-POST
-
-/api/dealers/update
-
-Update existing dealer
-
-Example Request (Create Dealer)
-
+```json
 {
   "dealerName": "John Doe",
   "dealerEmail": "john@example.com",
   "subscriptionType": "PREMIUM"
 }
+```
 
-🚘 Vehicle APIs
-Method
+### 🚘 Vehicle APIs
 
-Endpoint
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `POST` | `/api/vehicles/` | Creates a new vehicle under a specific dealer. |
+| `GET` | `/api/vehicles` | Retrieves a list of all vehicles. |
+| `GET` | `/api/vehicles/{vehicleId}` | Retrieves a specific vehicle by its ID. |
+| `GET` | `/api/vehicles/premium-dealers` | Retrieves vehicles listed exclusively by premium dealers. |
 
-Description
+**Example Request (Create Vehicle)**
 
-POST
-
-/api/vehicles/
-
-Create a new vehicle under a dealer
-
-GET
-
-/api/vehicles
-
-Get all vehicles
-
-GET
-
-/api/vehicles/{vehicleId}
-
-Get vehicle by ID
-
-GET
-
-/api/vehicles/premium-dealers
-
-Get vehicles listed by PREMIUM dealers
-
-Example Request (Create Vehicle)
-
+```json
 {
   "dealer_id": "{{dealerId}}",
   "model": "Toyota Corolla",
   "price": 15000,
   "statusType": "AVAILABLE"
 }
+```
 
-💳 Payment APIs
-Method
+### 💳 Payment APIs
 
-Endpoint
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `POST` | `/api/payments/initiate` | Initiates a new payment for a dealer. |
+| `GET` | `/api/payments` | Retrieves a list of all payment records. |
+| `GET` | `/api/payments/{paymentId}` | Retrieves the details of a specific payment by its ID. |
 
-Description
+**Example Request (Initiate Payment)**
 
-POST
-
-/api/payments/initiate
-
-Initiate a new payment for a dealer
-
-GET
-
-/api/payments
-
-Get all payments
-
-GET
-
-/api/payments/{paymentId}
-
-Get payment details by ID
-
-Example Request (Initiate Payment)
-
+```json
 {
   "dealer_id": "{{dealerId}}",
   "amount": 1000,
   "paymentMethodType": "UPI"
 }
+```
 
-🔑 Environment Variables (Postman)
-The following variables are pre-configured in the Postman collection:
+-----
 
-{
-  "dealerId": "b301c238-d63c-4a12-8888-085e3d7402c5",
-  "vehicleId": "dcff27ae-436d-4624-823a-3ec4fa174638",
-  "paymentId": "25b30e98-c620-4e0f-8158-bd0a3958b9ef"
-}
+## 🔗 Postman Collection
 
-You can replace them with real values after running the API.
+For easy testing, you can import the provided Postman collection.
 
-📂 Project Structure
+  * **File:** `Dealer & Vehicle Management API.postman_collection.json`
+
+This collection contains pre-configured requests for all endpoints. It also includes environment variables for `dealerId`, `vehicleId`, and `paymentId` that you can replace with real values after creating your first records.
+
+-----
+
+## 📂 Project Structure
+
+```
 dealer-vehicle-management/
 │── src/main/java/com/example/dealer_vehicle_management/
-│   ├── controller/     # REST Controllers
-│   ├── service/        # Service Layer
-│   ├── dao/            # Data Access Layer (JPA Repositories)
-│   ├── entity/         # JPA Entities
-│   ├── enums/          # Enums (SubscriptionType, StatusType, PaymentMethodType)
+│   ├── controller/      # REST Controllers
+│   ├── service/         # Service Layer
+│   ├── dao/             # Data Access Layer (JPA Repositories)
+│   ├── entity/          # JPA Entities
+│   ├── enums/           # Enums (SubscriptionType, StatusType, PaymentMethodType)
 │   └── DealerVehicleManagementApplication.java
 │
 │── src/main/resources/
 │   ├── application.properties
-│   └── schema.sql      # (Optional) DB schema initialization
+│   ├── schema.sql       # Database schema initialization
+│   └── data.sql         # Sample data
 │
-└── pom.xml
-
-📖 Postman Collection
-Import the provided collection into Postman:
-Dealer & Vehicle Management API.postman_collection.json
-
+└── pom.xml              # Maven configuration
