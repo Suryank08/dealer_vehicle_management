@@ -1,0 +1,108 @@
+{
+  "info": {
+    "name": "Dealer & Vehicle Management API",
+    "_postman_id": "d3b72801-58f3-4c9f-9d82-efb4a1234567",
+    "description": "Postman collection for Dealer, Vehicle and Payment APIs (Task 1 & 2).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Dealer",
+      "item": [
+        {
+          "name": "Create Dealer",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dealerName\": \"John Doe\",\n  \"dealerEmail\": \"john@example.com\",\n  \"subscriptionType\": \"PREMIUM\"\n}"
+            },
+            "url": "http://localhost:8080/api/dealers/"
+          }
+        },
+        {
+          "name": "Get All Dealers",
+          "request": { "method": "GET", "url": "http://localhost:8080/api/dealers" }
+        },
+        {
+          "name": "Get Dealer By ID",
+          "request": { "method": "GET", "url": "http://localhost:8080/api/dealers/{{dealerId}}" }
+        },
+        {
+          "name": "Update Dealer",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dealerId\": \"{{dealerId}}\",\n  \"dealerName\": \"John Smith\",\n  \"dealerEmail\": \"johnsmith@example.com\",\n  \"subscriptionType\": \"PREMIUM\"\n}"
+            },
+            "url": "http://localhost:8080/api/dealers/update"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Vehicle",
+      "item": [
+        {
+          "name": "Create Vehicle",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dealer_id\": \"{{dealerId}}\",\n  \"model\": \"Toyota Corolla\",\n  \"price\": 15000,\n  \"statusType\": \"AVAILABLE\"\n}"
+            },
+            "url": "http://localhost:8080/api/vehicles/"
+          }
+        },
+        {
+          "name": "Get All Vehicles",
+          "request": { "method": "GET", "url": "http://localhost:8080/api/vehicles" }
+        },
+        {
+          "name": "Get Vehicle By ID",
+          "request": { "method": "GET", "url": "http://localhost:8080/api/vehicles/{{vehicleId}}" }
+        },
+
+        {
+          "name": "Get Vehicles of PREMIUM Dealers",
+          "request": { "method": "GET", "url": "http://localhost:8080/api/vehicles/premium-dealers" }
+        }
+      ]
+    },
+    {
+      "name": "Payment",
+      "item": [
+        {
+          "name": "Initiate Payment",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dealer_id\": \"{{dealerId}}\",\n  \"amount\": 1000,\n  \"paymentMethodType\": \"UPI\"\n}"
+            },
+            "url": "http://localhost:8080/api/payments/initiate"
+          }
+        },
+        {
+          "name": "Get All Payments",
+          "request": { "method": "GET", "url": "http://localhost:8080/api/payments" }
+        },
+        {
+          "name": "Get Payment By ID",
+          "request": { "method": "GET", "url": "http://localhost:8080/api/payments/{{paymentId}}" }
+        }
+
+      ]
+    }
+  ],
+  "variable": [
+    { "key": "dealerId", "value": "b301c238-d63c-4a12-8888-085e3d7402c5" },
+    { "key": "vehicleId", "value": "dcff27ae-436d-4624-823a-3ec4fa174638" },
+    { "key": "paymentId", "value": "25b30e98-c620-4e0f-8158-bd0a3958b9ef" }
+  ]
+}
